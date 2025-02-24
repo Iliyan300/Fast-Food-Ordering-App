@@ -42,12 +42,14 @@ p {
 
 .line {
 
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.199);
+    margin-bottom: 1rem;
+
 }
 
 .header-container {
 
-    padding: 1rem;
+        padding: 1rem;
         display: flex;
         justify-content: center;
         align-items: flex-start;
@@ -56,6 +58,8 @@ p {
         height: 180px;   
         margin-left: 50px;
     }
+
+   
 
 .sub-title {
 
@@ -69,19 +73,26 @@ p {
     padding:1rem;
     display: flex;
     flex-direction: column; 
-    gap:1rem;
     background-color: #dadada;
+    
 }
 
 .product-container {
-
-    margin-top: 1rem;
     padding: 1rem;
    display: grid;
    grid-template-columns: auto 1fr auto;    
    gap: 1rem;
+   background-color: white;
+   border-radius: 12px;
+   margin-top: 1rem;
+   margin-bottom: 1.5rem;
+}
 
-
+.product-container:hover {
+    
+    transform: translateY(-2px);
+    transition: 0.2s;
+    
 }
 
 .add-btn i {
@@ -101,3 +112,57 @@ p {
 
     font-weight: 800;
 }
+
+
+/*  ORDER MODAL   */ 
+
+
+.order-modal {
+
+    padding:1rem;
+    display: flex;
+    flex-direction: column;
+    gap:1rem;
+  
+    
+}
+
+.order-modal h3 {
+
+    align-self: center;
+    font-size: 1.5rem;
+}
+
+.products-list {
+    padding: 0;
+}
+
+.products-list li, .total-price {
+
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   list-style: none;
+   
+}
+
+.products-list .item, .total-cost {
+
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+/*  BUTTONS   */
+
+.order-btn {
+
+    padding: 1rem;
+    align-self: center;
+    margin-bottom: 1rem;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    width: 80%;
+    font-weight: 800;
+}
+
