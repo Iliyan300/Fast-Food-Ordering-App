@@ -1,35 +1,59 @@
 import { menuArray } from './data.js'
 
-const orderModal = document.getElementById("modal");
-const productsList = document.getElementById("list");
-const menuContainer = document.getElementById("menu-box");
-const productsAdded = [];
+(function() {
+let productsAdded = [];
 
+document.addEventListener("click", function(event) {
+    const addButtonID = event.target.dataset.add;
+   const removeButtonID = event.target.dataset.remove;
 
-menuContainer.addEventListener("click", function(event) {
-
-   const addButtonID = event.target.dataset.add;
    if(addButtonID) {
       handletargetObject(Number(addButtonID))
+   
+   } 
+   
+   if(removeButtonID) {
+      removeTargetObject(Number(removeButtonID))
    }
 
 })
 
 
-function handletargetObject(buttonID) {
+function handletargetObject(IDtoAdd) {
   
-   const targetObject = menuArray.filter((product) => {
-      return product.id === buttonID
+      const targetObject = menuArray.filter((product) => {
+      return product.id === IDtoAdd
    })[0]
 
    productsAdded.push(targetObject);
+   calculateTotalCost()
    renderOrders()
 }
 
 
+function removeTargetObject(IDtoRemove) {
+
+   productsAdded = productsAdded.filter((product) => {
+   return product.id !== IDtoRemove;
+   
+})
+    
+renderOrders()
+
+}
+
+
+function calculateTotalCost() {
+   if(productsAdded) {
+      const totalCost = productsAdded.reduce((total, currentProduct) => {
+      return total + currentProduct.price
+   },0)
+      return totalCost
+      }
+   }
+
 
 function menuElements() {
-
    const products = menuArray.map(function(product) {
 
     return `<div class="product-container" id="prod">
@@ -51,36 +75,40 @@ function menuElements() {
 }
 
 
-function renderHTML() {
-
- menuContainer.innerHTML = menuElements();
-
-            
-}
-
-renderHTML();
-
-
 function renderOrders() {
+   const totalPriceEl = document.getElementById("total")
+   const productsList = document.getElementById("list");
 
    if(productsAdded) {
 
       const orderedProductsHTML = productsAdded.map((product) => {
-         return `<li class="item">${product.name} <button class="remove-btn" data-remove="${product.id}">remove</button> <span class="total-price">$${product.price}</span>
-         
+         return `<li class="item">${product.name} 
+         <button class="remove-btn" data-remove="${product.id}">remove</button> 
+         <span class="total-price">$${product.price}</span>
          </li>`
       }).join("")
 
       productsList.innerHTML = orderedProductsHTML;
-      showModal()
+      totalPriceEl.textContent = `$${calculateTotalCost()}`;
+      toggleOrderModal()
    }
-   
 }
 
 
-function showModal() {
+function toggleOrderModal() {
+   const orderModal = document.getElementById("modal");
+
+   if(productsAdded.length > 0) {
    orderModal.classList.remove("modal-hidden")
+   } else {
+   orderModal.classList.add("modal-hidden")
+   }
 }
 
                  
-             
+function renderHTML() {
+   document.getElementById("menu-box").innerHTML = menuElements();
+}
+renderHTML(); 
+
+})();

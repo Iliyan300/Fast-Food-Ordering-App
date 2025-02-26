@@ -137,7 +137,7 @@ p {
     padding: 0;
 }
 
-.products-list li, .total-price {
+.products-list li {
 
    display: flex;
    justify-content: space-between;
