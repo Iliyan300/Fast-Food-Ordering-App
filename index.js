@@ -7,6 +7,7 @@ document.addEventListener("click", function(event) {
     const addButtonID = event.target.dataset.add;
    const removeButtonID = event.target.dataset.remove;
 
+
    if(addButtonID) {
       handletargetObject(Number(addButtonID))
    
@@ -14,6 +15,15 @@ document.addEventListener("click", function(event) {
    
    if(removeButtonID) {
       removeTargetObject(Number(removeButtonID))
+   }
+
+   if(event.target.id === "order-btn") {
+      openPaymentModal()
+      
+   }
+
+   if (event.target === document.getElementById("payment-modal")) {
+   	closePaymentModal()
    }
 
 })
@@ -37,7 +47,6 @@ function removeTargetObject(IDtoRemove) {
    return product.id !== IDtoRemove;
    
 })
-    
 renderOrders()
 
 }
@@ -51,6 +60,19 @@ function calculateTotalCost() {
       return totalCost
       }
    }
+
+
+function openPaymentModal() {
+
+   const paymentModal = document.getElementById("payment-modal")
+   paymentModal.showModal();
+
+}
+
+function closePaymentModal() {
+   const paymentModalClose = document.getElementById("payment-modal")
+   paymentModalClose.close()
+}
 
 
 function menuElements() {

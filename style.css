@@ -86,6 +86,7 @@ p {
    border-radius: 12px;
    margin-top: 1rem;
    margin-bottom: 1.5rem;
+   box-shadow: 0 5px 5px gray;
 }
 
 .product-container:hover {
@@ -180,4 +181,58 @@ p {
 .modal-hidden {
 
     display: none;
+}
+
+/* PAYMENT MODAL */
+
+
+.payment-modal-hidden {
+    display: none;
+}
+
+.payment-modal-wrapper {
+
+    position: fixed;
+    background-color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    min-width:70%;
+    border: none;
+}
+
+
+
+
+.payment-modal-content {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 1rem;
+    box-sizing: border-box;
+    gap: 2rem;
+    
+}
+
+.payment-modal-content input {
+   
+    padding: 10px
+    
+}
+
+.payment-modal-content button {
+
+    padding: 1rem;
+    width: 180px;
+    border: none;
+    background-color: #5e16e4ef;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
 }
